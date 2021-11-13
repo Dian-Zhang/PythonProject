@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import time
+import random
 
 
 def get_html_text(url):
@@ -110,20 +111,35 @@ while True:
     video_records = temp_video_records
     # Here I prepare the html variable I will be updating later
     html = '<table style="width:100%;background-color:#60D978;">'
-    html += '<img src="person.jpg"/>'
+    html += '<tr><th colspan="2">' + "观看列表排行榜" + '</th></tr>'
     # Let's cycle the elements in dict_data
+    num = 1
+    color = ['#f58f98', '#f05b72', '#f391a9', '#b2d235', '#cde6c7', '#a1a3a6', '#7bbfea', '#f7acbc', '#deab8a',
+             '#817936']
+    tablecolor = ['#94d6da', '#feeeed']
+    flag = False
     for dict_item in video_records:
+        my_div_color = color[random.randint(0, 9)]
         html += '<tr>'
-        html += '<th>' + dict_item['video_name'] + '</th>'
+        html += '<th rowspan="3" style="width:20px" bgcolor="' + color[random.randint(0, 9)] + '">' + str(
+            num) + '</th>'
+        html += '<td bgcolor="' + tablecolor[flag] + '">' + dict_item['video_name'] + '</td>'
         html += '</tr>' + '<tr>'
-        html += '<th>' + "当前在线人数" + dict_item['video_online_people'] + '</th>'
+        html += '<td bgcolor="' + tablecolor[flag] + '">' + "当前在线人数:" + dict_item[
+            'video_online_people'] + '</td>'
         html += '</tr>' + '<tr>'
-        html += '<th>' + "<a href='" + "http://" + dict_item['video_url'] + "'>" + "点此链接观看" + "</a>" + '</th>'
+        html += '<td bgcolor="' + tablecolor[flag] + '">' + "<a href='" + "http://" + dict_item[
+            'video_url'] + "'>" + "点此链接观看" + "</a>" + '</td>'
         html += '</tr>'
+        num = num + 1
+        if flag:
+            flag = False
+        else:
+            flag = True
     html += '</table>'
     print(html)
     content = html
     res = pushplus(content)
     if res.status_code == 200:
         print("@@@@@@@@@@@@结束推送@@@@@@@@@@")
-    time.sleep(120)
+    time.sleep(600)
