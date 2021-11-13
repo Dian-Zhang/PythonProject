@@ -109,10 +109,8 @@ while True:
     # 如果满足一定的条件就开始推推送
     print("@@@@@@@@@@@@开始推送@@@@@@@@@@")
     video_records = temp_video_records
-    # Here I prepare the html variable I will be updating later
     html = '<table style="width:100%;background-color:#60D978;">'
     html += '<tr><th colspan="2">' + "观看列表排行榜" + '</th></tr>'
-    # Let's cycle the elements in dict_data
     num = 1
     color = ['#f58f98', '#f05b72', '#f391a9', '#b2d235', '#cde6c7', '#a1a3a6', '#7bbfea', '#f7acbc', '#deab8a',
              '#817936']
