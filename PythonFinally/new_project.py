@@ -46,7 +46,7 @@ while True:
     print("@@@@@@@@@@@@开始解析@@@@@@@@@@")
     url = "https://www.bilibili.com/video/online.html"
     html_str = get_html_text(url)
-
+    # print(html_str)
     soup = BeautifulSoup(html_str, 'html.parser')
     node_href = soup.find_all('a', target='_blank')
     node_views = soup.find_all('span', class_='play')
@@ -68,6 +68,7 @@ while True:
         name = str(item['title'])
         video_name.append(name)
         # node_img = soup.find_all('img', alt=name)
+        # print(node_img)
         # for item_img in node_img:
         #     print("@@@")
         #     print(item_img['src'])
@@ -99,11 +100,11 @@ while True:
         #     #     video_date.append("番剧无时间")
         #     # else:
         #     video_date.append(temp_item_date)
-    for item_views in node_video_views:
-        video_views.append(str(item_views['title']).strip('总播放数'))
-        # print(str(item_views['title']))
-    for item_dm in node_video_dm:
-        video_dm.append(str(item_dm['title']).strip('历史累计弹幕数'))
+        for item_views in node_video_views:
+            video_views.append(str(item_views['title']).strip('总播放数'))
+            # print(str(item_views['title']))
+        for item_dm in node_video_dm:
+            video_dm.append(str(item_dm['title']).strip('历史累计弹幕数'))
     for i in range(len(video_url)):
         temp = {}
         temp.update({'video_url': video_url[i]})
@@ -115,6 +116,7 @@ while True:
         temp.update({'video_online_people': video_online_people[i]})
         # temp.update({'video_date': video_date[i]})
         temp_video_records.append(temp)
+    print("@@@@@@@@@@@@结束解析@@@@@@@@@@")
     # 如果满足一定的条件就开始推推送
     print("@@@@@@@@@@@@开始推送@@@@@@@@@@")
     video_records = temp_video_records
