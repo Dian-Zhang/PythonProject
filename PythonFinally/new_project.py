@@ -1,5 +1,3 @@
-import html
-
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -46,7 +44,7 @@ while True:
     print("@@@@@@@@@@@@开始解析@@@@@@@@@@")
     url = "https://www.bilibili.com/video/online.html"
     html_str = get_html_text(url)
-    # print(html_str)
+    print(html_str)
     soup = BeautifulSoup(html_str, 'html.parser')
     node_href = soup.find_all('a', target='_blank')
     node_views = soup.find_all('span', class_='play')
