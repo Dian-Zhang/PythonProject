@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import time
 import random
+import pymysql
 
 
 def get_html_text(url):
@@ -44,7 +45,7 @@ while True:
     print("@@@@@@@@@@@@开始解析@@@@@@@@@@")
     url = "https://www.bilibili.com/video/online.html"
     html_str = get_html_text(url)
-    print(html_str)
+    # print(html_str)
     soup = BeautifulSoup(html_str, 'html.parser')
     node_href = soup.find_all('a', target='_blank')
     node_views = soup.find_all('span', class_='play')
@@ -129,9 +130,11 @@ while True:
     for dict_item in video_records:
         my_div_color = color[random.randint(0, 9)]
         html += '<tr>'
-        html += '<th rowspan="3" style="width:20px" bgcolor="' + color[random.randint(0, 9)] + '">' + str(
+        html += '<th rowspan="4" style="width:20px" bgcolor="' + color[random.randint(0, 9)] + '">' + str(
             num) + '</th>'
         html += '<td bgcolor="' + tablecolor[flag] + '">' + dict_item['video_name'] + '</td>'
+        html += '</tr>' + '<tr>'
+        html += '<td bgcolor="' + tablecolor[flag] + '">' + "UP主:" + dict_item['video_author'] + '</td>'
         html += '</tr>' + '<tr>'
         html += '<td bgcolor="' + tablecolor[flag] + '">' + "当前在线人数:" + dict_item[
             'video_online_people'] + '</td>'
@@ -151,4 +154,30 @@ while True:
     res = pushplus(content)
     if res.status_code == 200:
         print("@@@@@@@@@@@@结束推送@@@@@@@@@@")
+    print("@@@@@@@@@@@@开始储存@@@@@@@@@@")
+    # 现在的时间
+    system_time = time.strftime("%Y-%m-%d,%H:%M:%S", time.localtime())
+    print(system_time)
+    # 查询
+    db = pymysql.connect(host='localhost', user='root', password='123', port=3306, db='my python final work')
+    cursor = db.cursor()
+    sql_select = 'select coalesce(max(watch_list_id), 0)from system_time_to_watch_list;'
+    cursor.execute(sql_select)
+    watch_list_id = cursor.fetchone()[0] + 1
+    db.close()
+    # 插入
+    db = pymysql.connect(host='localhost', user='root', password='123', port=3306, db='my python final work')
+    cursor = db.cursor()
+    sql_insert_watch_list = 'insert into watch_list(video_url, video_name, video_views, video_dm, video_author, video_author_homepage,' \
+                            'video_online_people, watch_list_id) values (%s,%s,%s,%s,%s,%s,%s,%s) '
+    sql_insert_system_time_to_watch_list = 'insert into system_time_to_watch_list(system_time, watch_list_id) values (%s,%s)'
+    cursor.execute(sql_insert_system_time_to_watch_list, (system_time, watch_list_id))
+    db.commit()
+    for i in range(len(video_url)):
+        cursor.execute(sql_insert_watch_list,
+                       (video_url[i], video_name[i], video_views[i], video_dm[i], video_author[i],
+                        video_author_homepage[i], video_online_people[i], watch_list_id))
+        db.commit()
+    db.close()
+    print("@@@@@@@@@@@@储存结束@@@@@@@@@@")
     time.sleep(1200)

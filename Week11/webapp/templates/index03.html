@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>您好,{{user.nickname}}!</h1>
-{% for f in friends %}
-<h2>您的好友<b>{{f.author.nickname}}</b>来自{{f.address}}</h2>
-{% endfor %}
-{% endblock %}
