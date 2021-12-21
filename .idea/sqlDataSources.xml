@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="173ff246-a4a0-4d9c-a41d-accbedb127e8" name="DDL Mapping">
+      <data-sources db="78746849-f493-4ccc-93cc-622d4a46b9f9" />
+      <scope>
+        <node kind="schema" qname="my python final work" />
+      </scope>
+    </mapping>
+  </component>
+</project>

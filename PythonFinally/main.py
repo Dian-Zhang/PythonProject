@@ -4,6 +4,7 @@ import json
 import time
 import random
 import pymysql
+import matplotlib
 
 
 def get_html_text(url):

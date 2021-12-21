@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%if title %}
+    <title>{{title}}</title>
+    {%else %}
+    <title>默认标题</title>
+    {%endif %}
+    <!--    <link rel="stylesheet" href="../static/css/style_login.css">-->
+</head>
+<body>
+<a href="http://10.96.157.212/show">首页</a>
+<a href="http://10.96.157.212/hist_pic">直方图图片展示</a>
+<a href="http://10.96.157.212/pie_pic">饼状图图片展示</a>
+<a href="http://10.96.157.212/user_pic">总人数图片展示</a>
+{% block content %}{% endblock %}
+</body>
+</html>

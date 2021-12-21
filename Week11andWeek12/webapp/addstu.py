@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, g, redirect, url_for
 
-import os
 from SQLiteOp import connect_db
 
 app = Flask(__name__)
