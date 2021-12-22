@@ -30,6 +30,22 @@ while True:
         # 接收弹窗
         b.switch_to.alert.accept()
         b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
+    # web前端框架
+    max_people = b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[9]/td[7]').text
+    selected_people = b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[9]/td[8]/span').text
+    if eval(max_people) - eval(selected_people) > 0:
+        b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[9]/td[9]').click()
+        # 接收弹窗
+        b.switch_to.alert.accept()
+        b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
+    # ORACLE性能调整与优化
+    max_people = b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[5]/td[7]').text
+    selected_people = b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[5]/td[8]/span').text
+    if eval(max_people) - eval(selected_people) > 0:
+        b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[5]/td[9]').click()
+        # 接收弹窗
+        b.switch_to.alert.accept()
+        b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
     b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
     time.sleep(random.uniform(0.8, 1.5))
     i = i + 1

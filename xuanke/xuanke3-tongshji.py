@@ -30,6 +30,7 @@ while True:
     if eval(max_people) - eval(selected_people) > 0:
         b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[5]/td[9]').click()
         # 接收弹窗
+        b.find_element_by_id("confirm").click()
         b.switch_to.alert.accept()
         b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
         time.sleep(random.randint(3, 5))
@@ -40,6 +41,7 @@ while True:
     if eval(max_people) - eval(selected_people) > 0:
         b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[25]/td[9]').click()
         # 接收弹窗
+        b.find_element_by_id("confirm").click()
         b.switch_to.alert.accept()
         b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
         time.sleep(random.randint(3, 5))
@@ -50,6 +52,7 @@ while True:
     if eval(max_people) - eval(selected_people) > 0:
         b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[25]/td[9]').click()
         # 接收弹窗
+        b.find_element_by_id("confirm").click()
         b.switch_to.alert.accept()
         b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
         time.sleep(random.randint(3, 5))
@@ -59,6 +62,7 @@ while True:
     if eval(max_people) - eval(selected_people) > 0:
         b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[55]/td[9]').click()
         # 接收弹窗
+        b.find_element_by_id("confirm").click()
         b.switch_to.alert.accept()
         b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
         time.sleep(random.randint(3, 5))
