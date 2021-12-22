@@ -8,7 +8,7 @@ url = "http://jw.xujc.com/"
 b = webdriver.Chrome()
 b.get(url)
 b.find_element(By.ID, "username").send_keys("CME19061")
-b.find_element(By.ID, "password").send_keys("gf123456")
+b.find_element(By.ID, "password").send_keys("gaofan666")
 imgcode = input("请输入验证码 : ")
 b.find_element(By.ID, "imgcode").send_keys(imgcode)
 
@@ -21,12 +21,16 @@ time.sleep(1)
 b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[4]/td[9]/input').click()
 i = 0
 while True:
+    # 高数选讲
     max_people = b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[13]/td[7]').text
     selected_people = b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[13]/td[8]/span').text
     if eval(max_people) - eval(selected_people) > 0:
         b.find_element_by_xpath('//*[@id="data_table"]/tbody/tr[13]/td[9]').click()
+        # 接收弹窗
+        b.switch_to.alert.accept()
+        b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
     b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
     time.sleep(random.randint(1, 3))
     i = i + 1
     cur_time = time.strftime("%Y-%m-%d,%H:%M:%S", time.localtime())
-    print(cur_time + ": 已进行" + str(i) + "次抢课！！")
+    print(cur_time + "报告！我是大伞兵" + str(i) + "号！" + " 已进行" + str(i) + "次抢课！")
