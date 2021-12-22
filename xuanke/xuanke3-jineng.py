@@ -43,7 +43,7 @@ while True:
         b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
     # 刷新
     b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
-    time.sleep(random.randint(1, 3))
+    time.sleep(random.uniform(0.8, 1.5))
     i = i + 1
     cur_time = time.strftime("%Y-%m-%d,%H:%M:%S", time.localtime())
     print(cur_time + ": 正在可爱第" + str(i) + "次！！")

@@ -30,7 +30,7 @@ while True:
         b.switch_to.alert.accept()
         b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
     b.find_element_by_xpath('//*[@id="page-nav"]/table/tbody/tr/td[1]/input[2]').click()
-    time.sleep(random.randint(1, 3))
+    time.sleep(random.uniform(0.8, 1.5))
     i = i + 1
     cur_time = time.strftime("%Y-%m-%d,%H:%M:%S", time.localtime())
     print(cur_time + "报告！我是大伞兵" + str(i) + "号！" + " 已进行" + str(i) + "次抢课！")
