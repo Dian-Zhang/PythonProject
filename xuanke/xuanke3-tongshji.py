@@ -1,3 +1,4 @@
+import datetime
 import time
 from selenium import webdriver
 from selenium.webdriver import ActionChains
@@ -66,5 +67,6 @@ while True:
     # b.find_element_by_xpath('//*[@id="data_table"]/tfoot/tr/td/a[3]').click()
     time.sleep(random.uniform(0.8, 1.5))
     i = i + 1
-    cur_time = time.strftime("%Y-%m-%d,%H:%M:%S", time.localtime())
-    print(cur_time + ": 正在可爱第" + str(i) + "次！！")
+    # cur_time = time.strftime("%Y-%m-%d,%H:%M:%S", time.localtime())
+    dt_ms = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')  # 含微秒的日期时间，来源 比特量化
+    print(dt_ms + ": 正在可爱第" + str(i) + "次！！")
